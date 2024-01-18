@@ -247,17 +247,17 @@ tab(cidx)
 
 function tab(n) {
 
-    if (n === contents.length) {
-        cidx = 0
-    }
+    // if (n === contents.length) {
+    //     cidx = 0
+    // }
 
     contents.forEach(content => content.classList.add('hide', 'fade'))
-    contents[cidx].classList.remove('hide')
+    contents[n].classList.remove('hide')
     texts.forEach(text => text.classList.remove('tabheader__item_active'))
-    texts[cidx].classList.add('tabheader__item_active')
+    texts[n].classList.add('tabheader__item_active')
 }
 
-texts.forEach((text) => {
+texts.forEach((text, idx) => {
     text.onclick = () => {
         texts.forEach(text => {
             text.classList.remove('tabheader__item_active')
@@ -265,8 +265,8 @@ texts.forEach((text) => {
         });
 
         text.classList.add('tabheader__item_active')
-        contents[cidx].classList.remove('hide')
-        cidx++
-        tab(cidx)
+        contents[idx].classList.remove('hide')
+        // idx++
+        tab(idx)
     }
 })
