@@ -150,11 +150,15 @@ actions.forEach((div, idx) => {
 let minutes = document.querySelector('#minutes')
 let seconds = document.querySelector('#seconds')
 let finish = false
+let hours = document.querySelector('#hours')
+let days = document.querySelector('#days')
 let confetti = document.querySelector('#confetti')
 let js_confetti = new JSConfetti()
 
 let min = minutes.innerHTML
 let sec = seconds.innerHTML
+let hour = hours.innerHTML
+let day = days.innerHTML
 
 // let met = min.innerHTML
 // let ext = sec.innerHTML
@@ -222,7 +226,24 @@ function timer() {
                 min = '0' + min;
             }
         } else {
-            finish = true;
+            min = 59
+
+            if (hour > 0) {
+                hour--;
+                if (hour < 10) {
+                    hour = '0' + hour
+                }
+            } else {
+                hour = 23
+
+                if (day > 0) {
+                    day--
+                    if (day < 10)
+                        day = '0' + day
+                } else {
+                    finish = true;
+                }
+            }
         }
     }
 
@@ -232,6 +253,8 @@ function timer() {
     } else {
         minutes.innerHTML = min;
         seconds.innerHTML = sec;
+        hours.innerHTML = hour
+        days.innerHTML = day
     }
 }
 
@@ -270,3 +293,11 @@ texts.forEach((text, idx) => {
         tab(idx)
     }
 })
+
+// setTimeout(() => {
+//     document.querySelector('.modal').style.display = 'flex';
+//     setTimeout(() => {
+//         document.querySelector('.modal').style.display = 'none';
+//     }, 5000)
+// }, 5000);
+
